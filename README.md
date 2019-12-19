@@ -21,24 +21,25 @@
 13.66是设计稿宽度/100，然后各个开发者直接将设计稿的px值填写到css文件中，由框架自动完成px到rem的转换
 
 HTML入口文件：
-    <script>
-        (function(doc, win) {
-            var docEl = doc.documentElement,
-                // 判断window中是否有orientationchange方法
-                resizeEvt = "orientationchange" in window ? "orientationchange" : "resize",
-                recalc = function() {
-                    var clientWidth = docEl.clientWidth;
-                    if (!clientWidth) return;
-                    //设置基础html的fontsize
-                    docEl.style.fontSize =
-                        clientWidth > 1080 ? +((13.66 * clientWidth) / 1366).toFixed(2) + "px" : "10.8px";
-                    //console.log(docEl.style.fontSize, "docEl.style.fontSize");
-                };
-            if (!doc.addEventListener) return;
-            win.addEventListener(resizeEvt, recalc, false);
-            doc.addEventListener("DOMContentLoaded", recalc, false);
-        })(document, window);
-    </script>
+
+        <script>
+            (function(doc, win) {
+                var docEl = doc.documentElement,
+                    // 判断window中是否有orientationchange方法
+                    resizeEvt = "orientationchange" in window ? "orientationchange" : "resize",
+                    recalc = function() {
+                        var clientWidth = docEl.clientWidth;
+                        if (!clientWidth) return;
+                        //设置基础html的fontsize
+                        docEl.style.fontSize =
+                            clientWidth > 1080 ? +((13.66 * clientWidth) / 1366).toFixed(2) + "px" : "10.8px";
+                        //console.log(docEl.style.fontSize, "docEl.style.fontSize");
+                    };
+                if (!doc.addEventListener) return;
+                win.addEventListener(resizeEvt, recalc, false);
+                doc.addEventListener("DOMContentLoaded", recalc, false);
+            })(document, window);
+        </script>
 
 
 二 HTML/JSX文件的适配
